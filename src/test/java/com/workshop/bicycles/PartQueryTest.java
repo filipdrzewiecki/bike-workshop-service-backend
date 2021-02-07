@@ -1,11 +1,8 @@
 package com.workshop.bicycles;
 
-import com.workshop.db.entity.Frame;
 import com.workshop.db.specification.PartQueryBuilder;
+import com.workshop.enums.PartType;
 import org.junit.jupiter.api.Test;
-
-import java.nio.file.Paths;
-import java.util.List;
 
 public class PartQueryTest {
 
@@ -16,7 +13,11 @@ public class PartQueryTest {
                 .where("material='carbon'")
                 .and("brand='Kross")
                 .build();
+    }
 
+    @Test
+    void testEnum() throws Exception {
+        PartType.valueOfName(PartType.REAR_DERAILLEUR.getCommonName());
 
     }
 }

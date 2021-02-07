@@ -34,11 +34,11 @@ public enum PartType {
     HEADSET("headset"),
     STEM("stem");
 
-    public final String name;
+    public final String commonName;
 
     public static PartType valueOfName(String name) {
         for (PartType part : values()) {
-            if (part.name().equalsIgnoreCase(name)) {
+            if (part.getCommonName().equalsIgnoreCase(name)) {
                 return part;
             }
         }

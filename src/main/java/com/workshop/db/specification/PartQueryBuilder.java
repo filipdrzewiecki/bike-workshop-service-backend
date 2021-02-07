@@ -1,5 +1,6 @@
 package com.workshop.db.specification;
 
+//Experiments
 public class PartQueryBuilder {
 
     private String query;
@@ -10,7 +11,6 @@ public class PartQueryBuilder {
     public PartQueryBuilder(String base) {
         this.query = base;
     }
-
 
 
     public PartQueryBuilder base(String base) {

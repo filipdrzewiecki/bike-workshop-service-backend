@@ -3,7 +3,6 @@ package com.workshop.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,15 +15,15 @@ import com.workshop.db.repository.BicycleRepository;
 
 import javax.persistence.EntityNotFoundException;
 
-@Data
+/** Manages bicycles added by the user */
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class BicycleService {
+public class CustomBicycleService {
 
     private final UserService userService;
     private final BicycleRepository repository;
-
 
     public List<BicycleDto> getAllBicycles(String userName) {
         User user = userService.getUserByUserName(userName);

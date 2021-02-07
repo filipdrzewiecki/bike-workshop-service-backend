@@ -12,11 +12,8 @@ import java.util.Optional;
 @Repository
 public interface FrameRepository extends JpaRepository<Frame, Long>, JpaSpecificationExecutor<Frame> {
 
-    boolean existsByProductId (String productId);
-
     Optional<Frame> findByProductId (String productId);
 
-    // For test only
+    // For db backup in test only
     List<Frame> findAllByIsOfficialTrue();
-
 }

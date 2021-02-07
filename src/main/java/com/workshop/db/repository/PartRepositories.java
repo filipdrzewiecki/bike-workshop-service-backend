@@ -11,9 +11,13 @@ import java.util.Map;
 public class PartRepositories {
 
     private final FrameRepository frameRepository;
+    private final ForkRepository forkRepository;
+    private final RearDerailleurRepository rearDerailleurRepository;
 
     public Map<Object, Object> getRepositoryInstance() {
-        return  Map.ofEntries(
-                Map.entry(PartType.FRAME, frameRepository));
+        return Map.ofEntries(
+                Map.entry(PartType.FRAME, frameRepository),
+                Map.entry(PartType.REAR_DERAILLEUR, rearDerailleurRepository),
+                Map.entry(PartType.FORK, forkRepository));
     }
 }

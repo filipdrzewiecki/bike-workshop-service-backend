@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,29 +19,28 @@ import org.springframework.web.bind.annotation.RestController;
 import com.workshop.component.BicycleTypePropertyEditor;
 import com.workshop.db.entity.BicyclePart;
 import com.workshop.db.specification.GenericSpecification;
-import com.workshop.service.PartsService;
+import com.workshop.service.OfficialPartService;
 
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
-public class PartController {
+@RequestMapping("/parts/{partType}")
+public class OfficialPartController {
 
-    private final PartsService service;
+    private final OfficialPartService service;
 
     @InitBinder
-    public void initBinder(WebDataBinder binder)
-    {
-        binder.registerCustomEditor(PartType.class, new BicycleTypePropertyEditor(PartType.class));
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(PartType.class, new BicycleTypePropertyEditor());
     }
 
-    @GetMapping("/parts/{partType}/{partId}")
+    @GetMapping("/{partId}")
     public Object fetchPart(@PathVariable PartType partType, @PathVariable String partId) {
         return service.getPart(partType, partId);
     }
 
-    @GetMapping("/parts/{partType}")
+    @GetMapping
     public Object fetchParts(
             @PageableDefault(size = 20) Pageable pageable,
             @PathVariable PartType partType,
@@ -62,49 +60,15 @@ public class PartController {
                 .year(year)
                 .size(size)
                 .wheelSize(wheelSize)
-                .product(partType.getName())
+                .product(partType.getCommonName())
                 .material(material)
                 .build();
         return service.getParts(partType, pageable, spec);
     }
 
-    @PostMapping("/parts/{partType}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public BicyclePart addPart(@PathVariable PartType partType, @RequestBody String partJson) {
         return service.addPart(partType, partJson);
     }
-
-    @GetMapping("/{userName}/bicycles/{bicycleName}/{partType}")
-    public Object getPartOfBicycle(@PathVariable String userName, @PathVariable String bicycleName,
-                          @PathVariable PartType partType) {
-        return service.fetchBicyclePart(userName, bicycleName, partType);
-    }
-
-    @PostMapping("/{userName}/bicycles/{bicycleName}/{partType}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Object addPartToBicycle(@PathVariable String userName, @PathVariable String bicycleName,
-                              @PathVariable PartType partType, @RequestBody String partJson) {
-        return service.addPartToBicycle(userName, bicycleName, partType, partJson);
-    }
-
-    @DeleteMapping("/{userName}/bicycles/{bicycleName}/{partType}")
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteBicyclePart(@PathVariable String userName, @PathVariable String bicycleName,
-                                   @PathVariable PartType partType) {
-        service.deleteBicyclePart(userName, bicycleName, partType);
-    }
-
-    @PostMapping("/{userName}/bicycles/{bicycleName}/{partType}/{partId}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Object addExistingPartToBicycle(@PathVariable String userName, @PathVariable String bicycleName,
-                                   @PathVariable PartType partType, @PathVariable String partId) {
-        return service.addExistingPartToBicycle(userName, bicycleName, partType, partId);
-    }
-
-    @GetMapping("/")
-    public String test() {
-        return "TEST!";
-    }
-
-
 }

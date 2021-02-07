@@ -4,7 +4,7 @@ import com.workshop.config.security.entity.Role;
 import com.workshop.config.security.repository.RoleRepository;
 import com.workshop.db.entity.Bicycle;
 import com.workshop.db.repository.PedalsRepository;
-import com.workshop.service.BicycleService;
+import com.workshop.service.CustomBicycleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -20,7 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ApplicationListener {
 
-    private final BicycleService service;
+    private final CustomBicycleService service;
     private final EntityManager em;
     private final PedalsRepository pedalsRepository;
     private final RoleRepository roleRepository;

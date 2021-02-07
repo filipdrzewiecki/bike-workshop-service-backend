@@ -3,8 +3,6 @@ package com.workshop.bicycles.utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workshop.bicycles.IntegrationTest;
-import com.workshop.db.entity.RearDerailleur;
-import com.workshop.db.repository.RearDerailleurRepository;
 import com.workshop.enums.PartType;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -13,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.workshop.db.entity.BicyclePart;
 import com.workshop.db.entity.Frame;
 import com.workshop.db.repository.BicyclePartRepository;
-import com.workshop.db.repository.FrameRepository;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -26,18 +23,12 @@ class DatabaseUtils extends IntegrationTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private FrameRepository frameRepository;
-
-    @Autowired
-    private RearDerailleurRepository rearDerailleurRepository;
-
-    @Autowired
     private BicyclePartRepository bicyclePartRepository;
 
     @Test
     @Disabled
     void saveFrames() throws Exception {
-        List<Frame> frames = frameRepository.findAllByIsOfficialTrue();
+        List<BicyclePart> frames = bicyclePartRepository.findAllByIsOfficialTrueAndProduct(PartType.FRAME.getCommonName());
 
         objectMapper.writeValueAsString(frames);
 
@@ -47,7 +38,7 @@ class DatabaseUtils extends IntegrationTest {
     @Test
     @Disabled
     void saveRearDerailleur() throws Exception {
-        List<RearDerailleur> derailleurs = rearDerailleurRepository.findAllByIsOfficialTrue();
+        List<BicyclePart> derailleurs = bicyclePartRepository.findAllByIsOfficialTrueAndProduct(PartType.REAR_DERAILLEUR.getCommonName());
 
         objectMapper.writeValueAsString(derailleurs);
 
@@ -56,8 +47,18 @@ class DatabaseUtils extends IntegrationTest {
 
     @Test
     @Disabled
+    void saveFork() throws Exception {
+        List<BicyclePart> forks = bicyclePartRepository.findAllByIsOfficialTrueAndProduct(PartType.FORK.getCommonName());
+
+        objectMapper.writeValueAsString(forks);
+
+        objectMapper.writeValue(Paths.get("src/test/resources/db/fork.json").toFile(), forks);
+    }
+
+    @Test
+    @Disabled
     void deleteFrames() throws Exception {
-        frameRepository.deleteAll();
+        //frameRepository.deleteAll();
     }
 
     @Test
@@ -65,7 +66,7 @@ class DatabaseUtils extends IntegrationTest {
     void addFrames() throws Exception {
         String json = resourceAsJson("db/frames.json");
         List<Frame> frames = objectMapper.readValue(json, new TypeReference<List<Frame>>() {});
-        frameRepository.saveAll(frames);
+        bicyclePartRepository.saveAll(frames);
     }
 
     @Test

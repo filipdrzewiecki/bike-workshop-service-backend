@@ -10,13 +10,13 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class RearDerailleur extends BicyclePart {
 
-    private int minSprocket;
-    private int maxSprocket;
-    private int maxGears;
-    private int speeds;
+    private Integer minSprocket;
+    private Integer maxSprocket;
+    private Integer maxGears;
+    private Integer speeds;
 
     //short, medium, long
     private String cage;
-    private int capacity;
+    private Integer capacity;
 
 }

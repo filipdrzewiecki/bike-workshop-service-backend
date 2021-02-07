@@ -50,7 +50,8 @@ public class OfficialPartController {
             @RequestParam(required = false) String year,
             @RequestParam(required = false) String size,
             @RequestParam(required = false) String wheelSize,
-            @RequestParam(required = false) String material
+            @RequestParam(required = false) String material,
+            @RequestParam(required = false) String speeds
     ) {
         log.info("brand: {}, model: {}, series: {}, year: {}, size: {}, wheelSize: {}, material: {}", brand, model, series, year, size, wheelSize, material);
         GenericSpecification spec = GenericSpecification.builder()
@@ -62,6 +63,7 @@ public class OfficialPartController {
                 .wheelSize(wheelSize)
                 .product(partType.getCommonName())
                 .material(material)
+                .speeds(speeds)
                 .build();
         return service.getParts(partType, pageable, spec);
     }

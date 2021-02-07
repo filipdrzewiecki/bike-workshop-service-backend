@@ -11,11 +11,9 @@ import java.util.Optional;
 @Repository
 public interface BicyclePartRepository extends JpaRepository<BicyclePart, Long>, JpaSpecificationExecutor<BicyclePart> {
 
-    boolean existsByProductId (String productId);
-
     Optional<BicyclePart> findByProductId (String productId);
 
-    // For test only
-    List<BicyclePart> findAllByIsOfficialTrue();
+    // For db backup in test only
+    List<BicyclePart> findAllByIsOfficialTrueAndProduct(String product);
 
 }

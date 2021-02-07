@@ -24,9 +24,9 @@ public class Specifications {
             addIfSet(predicates, root, criteriaBuilder, "size", spec.getSize());
             addIfSet(predicates, root, criteriaBuilder, "wheelSize", spec.getWheelSize());
             addIfSet(predicates, root, criteriaBuilder, "product", spec.getProduct());
+            addIfSet(predicates, root, criteriaBuilder, "speeds", spec.getSpeeds());
             addIfSet(predicates, root, criteriaBuilder, "isOfficial", true);
-
-
+            
             Predicate[] pred = predicates.toArray(Predicate[]::new);
             return criteriaBuilder.and(pred);
         };

@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Chain extends BicyclePart {
 
-
-    private int speeds;
+    private Integer speeds;
 
 }

@@ -11,11 +11,11 @@ import javax.persistence.*;
 public class HeadSet extends BicyclePart {
 
 
-    private double stereerDiameter;
-    private double topFrameDiameter;
-    private double bottomFrameDiameter;
-    private double topHeadTubeDiameter;
-    private double bottomHeadTubeDiameter;
+    private Double stereerDiameter;
+    private Double topFrameDiameter;
+    private Double bottomFrameDiameter;
+    private Double topHeadTubeDiameter;
+    private Double bottomHeadTubeDiameter;
 
     //a-head, semi-integrated, integrated
     private String type;

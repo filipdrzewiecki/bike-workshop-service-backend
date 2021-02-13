@@ -11,8 +11,8 @@ import javax.persistence.Entity;
 public class Tyre extends BicyclePart{
 
 
-    private int width;
-    private boolean tubeless;
-    private int diameter;
+    private Integer width;
+    private Boolean tubeless;
+    private Integer diameter;
 
 }

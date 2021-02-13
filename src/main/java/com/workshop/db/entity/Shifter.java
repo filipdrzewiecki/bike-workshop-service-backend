@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 @Entity
 @Data
 @NoArgsConstructor
-public class ShifterLeft extends BicyclePart {
+public class Shifter extends BicyclePart {
 
-
-    private String gears;
+    private Integer shifts;
+    private String side;
 }

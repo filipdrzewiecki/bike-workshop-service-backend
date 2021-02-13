@@ -10,14 +10,14 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Seatpost extends BicyclePart {
 
-
-    private double length;
-    private double diameter;
+    private Double length;
+    private Double diameter;
     private String material;
-    private boolean suspension;
+    private Boolean suspension;
+    private Integer offset;
 
     //dropper seatPost section
-    private int travel;
+    private Integer travel;
     //inner, outer
     private String cableRouteType;
     //dropper seatPost section

@@ -11,8 +11,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Saddle extends BicyclePart {
 
-
-    private int width;
+    private Integer length;
+    private Integer width;
     private String material;
 
 }

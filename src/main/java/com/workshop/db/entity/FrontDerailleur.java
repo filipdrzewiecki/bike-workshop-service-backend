@@ -11,25 +11,25 @@ import javax.persistence.Entity;
 public class FrontDerailleur extends BicyclePart {
 
 
-    private int maxBigGear;
-    private int minBigGear;
-    private int capacity;
+    private Integer maxBigGear;
+    private Integer minBigGear;
+    private Integer capacity;
 
     //number of gears in crank
-    private int gears;
+    private Integer gears;
 
     //number of speeds in rear derailleur
-    private int speeds;
+    private Integer speeds;
 
     //top, down, or mid
     private String cableRouteType;
 
-    private int gearMaxDifference;
+    private Integer gearMaxDifference;
 
     private String cage;
 
     private String mount;
-    private double chainLine;
+    private Double chainLine;
     private String chainstayAngle;
 
 }

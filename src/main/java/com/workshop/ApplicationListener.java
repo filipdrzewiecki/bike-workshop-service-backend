@@ -42,7 +42,7 @@ public class ApplicationListener {
 //        insertPartsToDb(Chainring.class);
 //        insertPartsToDb(Hub.class);
 //        insertPartsToDb(Rim.class);
-//        insertPartsToDb(ShifterLeft.class);
+//        insertPartsToDb(Shifter.class);
 //        insertPartsToDb(ShifterRight.class);
 //        insertPartsToDb(Tyre.class);
 //        insertPartsToDb(BottomBracket.class);

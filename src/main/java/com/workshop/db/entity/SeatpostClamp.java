@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 public class SeatpostClamp extends BicyclePart {
 
 
-    private double setapostDiameter;
-    private double frameDiameter;
+    private Double setapostDiameter;
+    private Double frameDiameter;
 
 }

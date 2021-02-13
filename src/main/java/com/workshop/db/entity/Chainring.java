@@ -18,9 +18,9 @@ public class Chainring extends BicyclePart {
     private String armsAndType;
 
     //i.e. 96, 104. Distance in mm from one hole in arm to hole in opposite arm
-    private int pcd;
+    private Integer pcd;
 
-    private int teethNumber;
+    private Integer teethNumber;
 
-    private int speeds;
+    private Integer speeds;
 }

@@ -19,12 +19,12 @@ public class BottomBracket extends BicyclePart {
 
     //Integrated
     private String bottomBracketShellDiameter;
-    private double axleDiameter;
+    private Double axleDiameter;
     //Integrated
 
     //Cartridge
-    private double axleLength;
-    private double shellLength;
+    private Double axleLength;
+    private Double shellLength;
     //Cartridge
 
 }

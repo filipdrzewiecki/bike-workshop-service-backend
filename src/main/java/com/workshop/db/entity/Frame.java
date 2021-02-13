@@ -38,6 +38,6 @@ public class Frame extends BicyclePart {
 
     private String material;
 
-    private boolean hasDamper;
+    private Boolean hasDamper;
 
 }

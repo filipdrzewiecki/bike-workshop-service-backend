@@ -12,9 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
-
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -27,21 +25,22 @@ public abstract class BicyclePart {
     private Long id;
 
     @NaturalId
-    protected String productId;
+    private String productId;
 
-    protected String product;
-    protected String brand;
-    protected String model;
-    protected String series;
-    protected String purpose;
+    private String product;
+    private String brand;
+    private String model;
+    private String series;
+    private String purpose;
 
     @Column(precision=7, scale=3)
     @JsonFormat(shape= JsonFormat.Shape.STRING)
-    protected BigDecimal weight;
+    private BigDecimal weight;
 
-    protected String comment;
-    protected Boolean isOfficial;
-    protected String year;
+    private String comment;
+    private Boolean isOfficial;
+    private String year;
 
-
+    private String ean;
+    private String manufacturersCode;
 }

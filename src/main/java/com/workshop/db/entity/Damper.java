@@ -11,8 +11,8 @@ import javax.persistence.Entity;
 public class Damper extends BicyclePart {
 
 
-    private int stroke;
-    private int eyeToEyeLength;
-    private int bodyLength;
+    private Integer stroke;
+    private Integer eyeToEyeLength;
+    private Integer bodyLength;
 
 }

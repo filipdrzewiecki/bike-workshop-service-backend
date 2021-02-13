@@ -11,18 +11,18 @@ import javax.persistence.*;
 public class Hub extends BicyclePart{
 
 
-    private int holes;
+    private Integer holes;
     private String axleDiameter;
     private String axleType;
     private String discType;
-    private double offsetLeft;
-    private double offsetRight;
-    private double pcdLeft;
-    private double pcdRight;
+    private Double offsetLeft;
+    private Double offsetRight;
+    private Double pcdLeft;
+    private Double pcdRight;
     private String hubType;
 
-    private int speeds;
-    private double freewheelWidth;
+    private Integer speeds;
+    private Double freewheelWidth;
     private String freewheelType;
 
 }

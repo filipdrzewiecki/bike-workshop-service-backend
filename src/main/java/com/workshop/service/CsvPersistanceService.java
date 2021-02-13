@@ -353,9 +353,9 @@ public class CsvPersistanceService {
 //    }
 //
 //    private void insertShifterLeftToDb() {
-//        List<ShifterLeft> listFromCSV = loadObjectList(ShifterLeft.class);
-//        for (ShifterLeft objectFromCSV : listFromCSV) {
-//            Optional<ShifterLeft> objectFromDb = shifterLeftRepository.findByProductId(objectFromCSV.getProductId());
+//        List<Shifter> listFromCSV = loadObjectList(Shifter.class);
+//        for (Shifter objectFromCSV : listFromCSV) {
+//            Optional<Shifter> objectFromDb = shifterLeftRepository.findByProductId(objectFromCSV.getProductId());
 //            if (objectFromDb.isPresent()) {
 //                objectFromCSV.setId(objectFromDb.get().getId());
 //                shifterLeftRepository.save(objectFromCSV);

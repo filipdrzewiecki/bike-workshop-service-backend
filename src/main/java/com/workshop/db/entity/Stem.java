@@ -11,9 +11,9 @@ import javax.persistence.Entity;
 public class Stem extends BicyclePart {
 
 
-    private int length;
-    private int angle;
-    private double headtubeDiameter;
-    private double handlebarDiameter;
+    private Integer length;
+    private Integer angle;
+    private Double headtubeDiameter;
+    private Double handlebarDiameter;
 
 }

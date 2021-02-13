@@ -11,25 +11,26 @@ import javax.persistence.*;
 public class Fork extends BicyclePart {
 
 
-    protected Double headTubeLength;
-    protected Double headTubeTopDiameter;
-    protected Double headTubeBottomDiameter;
+    private Double headTubeLength;
+    private Double headTubeTopDiameter;
+    private Double headTubeBottomDiameter;
     private String year;
 
     private String forkTubeType;
 
-    protected String axleSize;
+    private String axleSize;
+    private String axleType;
     private String material;
-    protected String wheel;
-    protected String brakeType;
-    protected String discMount;
+    private String wheel;
+    private String brakeType;
+    private String discMount;
 
     private String offset;
 
     //suspensionFork
     private Double travel;
-    private String leftChamber;
-    private String rightChamber;
+    private String spring;
+    private String damper;
     private String uppersSize;
     private String remoteLockout;
     private String adjustments;

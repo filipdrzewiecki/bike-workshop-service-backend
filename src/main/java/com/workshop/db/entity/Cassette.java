@@ -12,12 +12,12 @@ public class Cassette extends BicyclePart {
 
 
     //smallest cog - usually 10 or 11 teeth
-    private int smallest;
+    private Integer smallest;
 
     //biggest cog - i.e. 42
-    private int biggest;
+    private Integer biggest;
 
-    private int speeds;
+    private Integer speeds;
 
     //Shimano, Sram, Campagnolo
     private String freewheelBody;

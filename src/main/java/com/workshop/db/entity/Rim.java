@@ -11,14 +11,14 @@ import javax.persistence.Entity;
 public class Rim extends BicyclePart{
 
 
-    private double height;
-    private double innerWidth;
-    private double outerWidth;
-    private int holes;
+    private Double height;
+    private Double innerWidth;
+    private Double outerWidth;
+    private Integer holes;
     private String brakeType;
-    private boolean tubeless;
-    private int diameter;
-    private int erd;
+    private Boolean tubeless;
+    private Integer diameter;
+    private Integer erd;
     private String material;
 
 }

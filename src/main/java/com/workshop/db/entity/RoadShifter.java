@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-public class RoadShifterLeft extends BicyclePart {
+public class RoadShifter extends BicyclePart {
 
-
-    private int gears;
+    private Integer shifts;
+    private Integer side;
 
     //Cable, Hydraulic
     private String brakeType;

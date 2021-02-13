@@ -11,6 +11,6 @@ import javax.persistence.Entity;
 public class Disc extends BicyclePart{
 
 
-    private int diameter;
+    private Integer diameter;
 
 }

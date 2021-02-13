@@ -12,15 +12,15 @@ public class Handlebar extends BicyclePart {
 
 
     //mountain
-    private double diameter;
-    private double offsetBack;
-    private int width;
-    private int rise;
+    private Double diameter;
+    private Double offsetBack;
+    private Integer width;
+    private Integer rise;
     //mountain
 
     //road
-    private int barDrop;
-    private int barReach;
+    private Integer barDrop;
+    private Integer barReach;
     //road
 
     //Carbon, Aluminium, Steel, Magnesium, Titanium

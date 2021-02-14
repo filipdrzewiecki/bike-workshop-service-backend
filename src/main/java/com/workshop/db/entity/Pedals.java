@@ -15,9 +15,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class Pedals extends BicyclePart{
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
-
     private String type;
+    private Boolean spd;
+    private String block;
 }

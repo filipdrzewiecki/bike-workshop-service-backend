@@ -16,4 +16,7 @@ public interface BicyclePartRepository extends JpaRepository<BicyclePart, Long>,
     // For db backup in test only
     List<BicyclePart> findAllByIsOfficialTrueAndProduct(String product);
 
+    List<BicyclePart> findAllByIsOfficialTrue();
+
+
 }

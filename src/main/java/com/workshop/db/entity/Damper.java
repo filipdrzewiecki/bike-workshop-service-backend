@@ -9,8 +9,7 @@ import javax.persistence.Entity;
 @Data
 @NoArgsConstructor
 public class Damper extends BicyclePart {
-
-
+    
     private Integer stroke;
     private Integer eyeToEyeLength;
     private Integer bodyLength;

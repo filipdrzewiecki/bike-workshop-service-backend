@@ -57,6 +57,16 @@ class DatabaseUtils extends IntegrationTest {
 
     @Test
     @Disabled
+    void saveAll() throws Exception {
+        List<BicyclePart> all = bicyclePartRepository.findAll();
+
+        objectMapper.writeValueAsString(all);
+
+        objectMapper.writeValue(Paths.get("src/test/resources/db/parts.json").toFile(), all);
+    }
+
+    @Test
+    @Disabled
     void deleteFrames() throws Exception {
         //frameRepository.deleteAll();
     }

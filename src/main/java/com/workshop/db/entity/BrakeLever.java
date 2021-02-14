@@ -11,6 +11,14 @@ import javax.persistence.*;
 public class BrakeLever extends BicyclePart {
 
 
-    //Front, Rear, Left, Right
+    //Left, Right
     private String side;
+
+    //Mineral, DOT
+    private String oilType;
+
+    //SM-BH90-SBM, SM-BH90-SBLS
+    private String hoseType;
+
+    private String type;
 }

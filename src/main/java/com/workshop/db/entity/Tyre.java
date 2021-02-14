@@ -10,9 +10,9 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Tyre extends BicyclePart{
 
-
     private Integer width;
     private Boolean tubeless;
     private Integer diameter;
-
+    private String type;
+    private String tpi;
 }

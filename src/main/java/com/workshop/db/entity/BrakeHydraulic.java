@@ -10,6 +10,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class BrakeHydraulic extends BicyclePart {
 
+    @OneToOne
+    @JoinColumn(name = "lever_id")
+    private BrakeLever brakeLever;
+
+    @OneToOne
+    @JoinColumn(name = "caliper_id")
+    private BrakeCaliper brakeCaliper;
 
     //Mineral, DOT
     private String oilType;
@@ -21,5 +28,4 @@ public class BrakeHydraulic extends BicyclePart {
 
     //SM-BH90-SBM, SM-BH90-SBLS
     private String hoseType;
-
 }

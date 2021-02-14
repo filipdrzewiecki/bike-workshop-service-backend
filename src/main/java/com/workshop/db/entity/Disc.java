@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Disc extends BicyclePart{
 
-
     private Integer diameter;
+    private String padType;
 
 }

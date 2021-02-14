@@ -11,5 +11,9 @@ import javax.persistence.Entity;
 public class Shifter extends BicyclePart {
 
     private Integer shifts;
+    private Integer speeds;
     private String side;
+
+    private Boolean integratedBrake;
+    private String brakeType;
 }

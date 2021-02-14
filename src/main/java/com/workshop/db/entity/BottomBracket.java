@@ -24,7 +24,9 @@ public class BottomBracket extends BicyclePart {
 
     //Cartridge
     private Double axleLength;
-    private Double shellLength;
     //Cartridge
+
+    private String shellWidth;
+
 
 }

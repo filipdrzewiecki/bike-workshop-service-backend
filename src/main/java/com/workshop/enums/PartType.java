@@ -7,11 +7,16 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum PartType {
 
+    BOTTOM_BRACKET("bottomBracket"),
+    BRAKE_HYDRAULIC("brakeHydraulic"),
+    BRAKE_CALIPER("brakeCaliper"),
+    BRAKE_LEVER("brakeLever"),
     FRAME("frame"),
     FORK("fork"),
     DAMPER("damper"),
     DISC("disc"),
     HUB("hub"),
+    PEDALS("pedals"),
     RIM("rim"),
     TYRE("tyre"),
     WHEEL("wheel"),
@@ -24,7 +29,6 @@ public enum PartType {
     CHAINRING("chainring"),
     CHAIN("chain"),
     CASSETTE("cassette"),
-    BOTTOM_BRACKET("bottomBracket"),
     SHIFTER("shifter"),
     GRIPS("grips"),
     HANDLEBAR("handlebar"),

@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.workshop.db.entity.BicyclePart;
 import com.workshop.db.repository.BicyclePartRepository;
 
-import com.workshop.db.repository.FrameRepository;
 import com.workshop.db.specification.GenericSpecification;
 import com.workshop.enums.PartSpec;
 
@@ -29,8 +28,6 @@ import static com.workshop.utils.SerializationUtils.deserializeEntity;
 @RequiredArgsConstructor
 public class OfficialPartService {
 
-    private final CustomBicycleService customBicycleService;
-    private final FrameRepository frameRepository;
     private final BicyclePartRepository partRepository;
     private final PartRepositories repositories;
 
@@ -51,7 +48,6 @@ public class OfficialPartService {
         part.setIsOfficial(true);
 
         return partRepository.save(part);
-
     }
 
     public Object getPart(PartType type, String id) {
@@ -71,7 +67,4 @@ public class OfficialPartService {
         Method method = clazz.getMethod("findAll", Specification.class, Pageable.class);
         return method.invoke(repositoryInstance, parameters);
     }
-
-
-
 }

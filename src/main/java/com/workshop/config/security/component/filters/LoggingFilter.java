@@ -1,4 +1,4 @@
-package com.workshop.config.security.component;
+package com.workshop.config.security.component.filters;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -21,7 +21,7 @@ import java.util.Set;
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
 public class LoggingFilter extends OncePerRequestFilter {
 
-    private final static Set<String> NOT_SUPPORTED_URLS = Set.of("swagger", "css", "csrf");
+    private final static Set<String> NOT_SUPPORTED_URLS = Set.of("csrf");
 
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {

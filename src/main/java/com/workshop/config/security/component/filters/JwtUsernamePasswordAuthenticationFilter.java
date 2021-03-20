@@ -1,5 +1,6 @@
-package com.workshop.config.security.component;
+package com.workshop.config.security.component.filters;
 
+import com.workshop.config.security.component.UserAuthentication;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;

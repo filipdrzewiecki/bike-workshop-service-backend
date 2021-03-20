@@ -37,7 +37,11 @@ public class Bicycle {
     private Double predefinedWeight;
     private Double countedWeight;
 
-    private long year;
+    private Long year;
+
+    private Long imageId;
+
+    private Boolean isOfficial;
 
     @OneToOne
     @JoinColumn(name = "frame_id")

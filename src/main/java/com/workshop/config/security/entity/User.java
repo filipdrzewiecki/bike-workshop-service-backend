@@ -1,6 +1,7 @@
 package com.workshop.config.security.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.workshop.db.entity.BicyclePart;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

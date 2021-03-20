@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class AuthenticationBuilder {
-    private final HttpRequestComponent httpRequestComponent;
 
+    private final HttpRequestComponent httpRequestComponent;
 
     public UserAuthentication buildAuthentication(User user, String token) {
         final List<Role> roles = user.getRoles().stream()

@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Shifter extends BicyclePart {
 
-    private Integer shifts;
+    private String shifts;
     private Integer speeds;
     private String side;
 

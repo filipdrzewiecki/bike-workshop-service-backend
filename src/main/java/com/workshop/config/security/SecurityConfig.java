@@ -15,9 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import com.workshop.config.security.component.Http401UnauthorizedEntryPoint;
 import com.workshop.config.security.component.JwtAuthenticationProvider;
-import com.workshop.config.security.component.JwtAuthorizationFilter;
+import com.workshop.config.security.component.filters.JwtAuthorizationFilter;
 import com.workshop.config.security.component.JwtTokenSettings;
-import com.workshop.config.security.component.JwtUsernamePasswordAuthenticationFilter;
+import com.workshop.config.security.component.filters.JwtUsernamePasswordAuthenticationFilter;
 
 import java.util.Map;
 

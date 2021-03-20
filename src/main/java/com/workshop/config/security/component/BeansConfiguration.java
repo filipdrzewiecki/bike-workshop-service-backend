@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeansConfiguration {
+
     @Bean
     @ConfigurationProperties(prefix = "security.token")
     public JwtTokenSettings jwtTokenSettings() {

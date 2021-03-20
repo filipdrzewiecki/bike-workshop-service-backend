@@ -2,7 +2,7 @@ package com.workshop.controller;
 
 import com.workshop.component.BicycleTypePropertyEditor;
 import com.workshop.enums.PartType;
-import com.workshop.service.CustomBicycleService;
+import com.workshop.service.PersonalBicycleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,9 +16,9 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/{userName}/bicycles")
-public class CustomBicycleController {
+public class PersonalBicycleController {
 
-    private final CustomBicycleService service;
+    private final PersonalBicycleService service;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {

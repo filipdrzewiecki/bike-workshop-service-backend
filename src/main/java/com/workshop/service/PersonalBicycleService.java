@@ -20,7 +20,7 @@ import javax.persistence.EntityNotFoundException;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CustomBicycleService {
+public class PersonalBicycleService {
 
     private final UserService userService;
     private final BicycleRepository repository;

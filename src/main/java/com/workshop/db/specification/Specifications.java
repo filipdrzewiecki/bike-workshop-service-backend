@@ -12,6 +12,22 @@ import java.util.List;
 @UtilityClass
 public class Specifications {
 
+    public static Specification buildCommonSpecification(GenericSpecification spec) {
+        return (Specification) (root, criteriaQuery, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            addIfSet(predicates, root, criteriaBuilder, "brand", spec.getBrand());
+            addIfSet(predicates, root, criteriaBuilder, "model", spec.getModel());
+            addIfSet(predicates, root, criteriaBuilder, "series", spec.getSeries());
+            addIfSet(predicates, root, criteriaBuilder, "year", spec.getYear());
+            addIfSet(predicates, root, criteriaBuilder, "product", spec.getProduct());
+            addIfSet(predicates, root, criteriaBuilder, "isOfficial", true);
+
+            Predicate[] pred = predicates.toArray(Predicate[]::new);
+            return criteriaBuilder.and(pred);
+        };
+    }
+
     public static Specification buildSpecification(GenericSpecification spec) {
         return (Specification) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();

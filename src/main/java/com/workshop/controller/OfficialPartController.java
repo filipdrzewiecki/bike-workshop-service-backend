@@ -53,7 +53,6 @@ public class OfficialPartController {
             @RequestParam(required = false) String material,
             @RequestParam(required = false) String speeds
     ) {
-        log.info("brand: {}, model: {}, series: {}, year: {}, size: {}, wheelSize: {}, material: {}", brand, model, series, year, size, wheelSize, material);
         GenericSpecification spec = GenericSpecification.builder()
                 .brand(brand)
                 .model(model)

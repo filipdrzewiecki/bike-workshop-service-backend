@@ -1,8 +1,12 @@
 package com.workshop.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.workshop.config.security.entity.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Column;
@@ -12,13 +16,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
 @NoArgsConstructor
-public abstract class BicyclePart {
+@AllArgsConstructor
+@Builder
+public class BicyclePart {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -43,4 +51,8 @@ public abstract class BicyclePart {
 
     private String ean;
     private String manufacturersCode;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

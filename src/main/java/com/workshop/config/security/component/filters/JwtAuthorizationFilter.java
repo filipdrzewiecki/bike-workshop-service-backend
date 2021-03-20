@@ -1,7 +1,9 @@
-package com.workshop.config.security.component;
+package com.workshop.config.security.component.filters;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.workshop.config.security.component.JwtTokenConfig;
+import com.workshop.config.security.component.JwtTokenSettings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

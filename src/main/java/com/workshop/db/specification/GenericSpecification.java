@@ -24,4 +24,5 @@ public class GenericSpecification {
     private String product;
     private String material;
     private String speeds;
+
 }

@@ -2,7 +2,6 @@ package com.workshop.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workshop.db.entity.Bicycle;
-import com.workshop.db.entity.BicyclePart;
 import com.workshop.db.entity.Frame;
 import com.workshop.db.repository.BottomBracketRepository;
 import com.workshop.db.repository.FrameRepository;
@@ -39,9 +38,8 @@ public class PersonalPartService {
     @SneakyThrows
     @Transactional
     public Object getUserParts(GenericSpecification spec, Pageable pageable, String userName) {
-        if (spec.getPartType() == null) {
-            Specification specification = Specifications.buildCommonSpecification(spec);
-            return repositories.findAllParts(pageable);
+        if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
+            return repositories.findAllParts(spec, pageable);
         }
         return getParts(spec.getPartType(), pageable, spec);
     }

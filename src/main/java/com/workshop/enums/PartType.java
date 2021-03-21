@@ -33,7 +33,8 @@ public enum PartType {
     GRIPS("grips"),
     HANDLEBAR("handlebar"),
     HEADSET("headset"),
-    STEM("stem");
+    STEM("stem"),
+    COMMON("common");
 
     public final String commonName;
 

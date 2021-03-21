@@ -1,7 +1,7 @@
 package com.workshop.db.repository;
 
 import com.workshop.db.entity.BicyclePart;
-import com.workshop.db.specification.PartQueryBuilder;
+import com.workshop.db.specification.GenericSpecification;
 import com.workshop.enums.PartType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -88,6 +88,12 @@ public class PartRepositories {
             "saddle", "rim", "seatpost_clamp", "seatpost", "shifter", "stem", "tyre", "wheel"
     );
 
+    private static final String WHERE = " where " +
+            "(:brand is null or brand = :brand) and " +
+            "(:series is null or series = :series) and " +
+            "(:year is null or year = :year) and " +
+            "(:model is null or model = :model) ";
+
     private String formQuery() {
         return formBaseQuery() + " limit :offset, :size ;";
     }
@@ -95,7 +101,7 @@ public class PartRepositories {
     private String formBaseQuery() {
         List<String> selects = parts
                 .stream()
-                .map(partType -> String.format(" select %s \n from %s", COLUMNS, partType))
+                .map(partType -> String.format(" select %s \n from %s %s", COLUMNS, partType, WHERE))
                 .collect(Collectors.toList());
 
         return String.join(" \n union all  \n", selects);
@@ -105,19 +111,36 @@ public class PartRepositories {
         return String.format("select count(*) from ( %s ) parts;", formBaseQuery());
     }
 
-    public Page<BicyclePart> findAllParts(Pageable pageable) {
-        int size = pageable.getPageSize();
-        long offset = pageable.getOffset();
+    public Page<BicyclePart> findAllParts(GenericSpecification spec, Pageable pageable) {
 
-        Map<String, Object> params = Map.of("offset", offset, "size", size);
+        Map<String, Object> params = assembleParams(spec, pageable);
 
         List<BicyclePart> parts = jdbcTemplate.query(formQuery(), params, mapParts());
 
-        Integer total = jdbcTemplate.queryForObject(formTotalQuery(), Map.of(), Integer.class);
+        Integer total = jdbcTemplate.queryForObject(formTotalQuery(), assembleParams(spec), Integer.class);
         if (total == null) {
             throw new IllegalStateException("Couldn't find complete list of total parts");
         }
         return new PageImpl<>(parts, pageable, total);
+    }
+
+    private Map<String, Object> assembleParams(GenericSpecification spec, Pageable pageable) {
+        Map<String, Object> params = assembleParams(spec);
+        params.put("offset", pageable.getOffset());
+        params.put("size", pageable.getPageSize());
+        return params;
+    }
+
+    private Map<String, Object> assembleParams(GenericSpecification spec) {
+        Map<String, Object> params = new HashMap<>();
+        if (spec == null) {
+            return params;
+        }
+        params.put("brand", spec.getBrand());
+        params.put("model", spec.getModel());
+        params.put("series", spec.getSeries());
+        params.put("year", spec.getYear());
+        return params;
     }
 
     private RowMapper<BicyclePart> mapParts() {

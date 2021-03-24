@@ -47,6 +47,7 @@ public class PersonalPartController {
                                @RequestParam(required = false) String material,
                                @RequestParam(required = false) String speeds) {
         GenericSpecification spec = new GenericSpecification()
+                .setOfficial(false)
                 .setPartType(partType)
                 .setBrand(brand)
                 .setModel(model)

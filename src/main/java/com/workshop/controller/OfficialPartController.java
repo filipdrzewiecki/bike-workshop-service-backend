@@ -25,7 +25,7 @@ import com.workshop.service.OfficialPartService;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/parts/{partType}")
+@RequestMapping("/parts")
 public class OfficialPartController {
 
     private final OfficialPartService service;
@@ -35,39 +35,39 @@ public class OfficialPartController {
         binder.registerCustomEditor(PartType.class, new BicycleTypePropertyEditor());
     }
 
-    @GetMapping("/{partId}")
+    @GetMapping
+    public Object getUserParts(@PageableDefault(size = 20) Pageable pageable,
+                               @RequestParam(required = false) PartType partType,
+                               @RequestParam(required = false) String brand,
+                               @RequestParam(required = false) String model,
+                               @RequestParam(required = false) String series,
+                               @RequestParam(required = false) String year,
+                               @RequestParam(required = false) String size,
+                               @RequestParam(required = false) String wheelSize,
+                               @RequestParam(required = false) String material,
+                               @RequestParam(required = false) String speeds) {
+        GenericSpecification spec = new GenericSpecification()
+                .setOfficial(true)
+                .setPartType(partType)
+                .setBrand(brand)
+                .setModel(model)
+                .setSeries(series)
+                .setYear(year)
+                .setSize(size)
+                .setWheelSize(wheelSize)
+                .setProduct(partType != null ? partType.getCommonName() : null)
+                .setMaterial(material)
+                .setSpeeds(speeds);
+        return service.getOfficialParts(spec, pageable);
+    }
+
+    @GetMapping("/{partType}/{partId}")
     public Object fetchPart(@PathVariable PartType partType, @PathVariable String partId) {
         return service.getPart(partType, partId);
     }
 
-    @GetMapping
-    public Object fetchParts(
-            @PageableDefault(size = 20) Pageable pageable,
-            @PathVariable PartType partType,
-            @RequestParam(required = false) String brand,
-            @RequestParam(required = false) String model,
-            @RequestParam(required = false) String series,
-            @RequestParam(required = false) String year,
-            @RequestParam(required = false) String size,
-            @RequestParam(required = false) String wheelSize,
-            @RequestParam(required = false) String material,
-            @RequestParam(required = false) String speeds
-    ) {
-        GenericSpecification spec = GenericSpecification.builder()
-                .brand(brand)
-                .model(model)
-                .series(series)
-                .year(year)
-                .size(size)
-                .wheelSize(wheelSize)
-                .product(partType.getCommonName())
-                .material(material)
-                .speeds(speeds)
-                .build();
-        return service.getParts(partType, pageable, spec);
-    }
 
-    @PostMapping
+    @PostMapping("/{partType}")
     @ResponseStatus(HttpStatus.CREATED)
     public BicyclePart addPart(@PathVariable PartType partType, @RequestBody String partJson) {
         return service.addPart(partType, partJson);

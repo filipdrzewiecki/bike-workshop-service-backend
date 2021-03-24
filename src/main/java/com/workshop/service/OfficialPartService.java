@@ -31,6 +31,14 @@ public class OfficialPartService {
     private final BicyclePartRepository partRepository;
     private final PartRepositories repositories;
 
+    @SneakyThrows
+    @Transactional
+    public Object getOfficialParts(GenericSpecification spec, Pageable pageable) {
+        if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
+            return repositories.findAllParts(spec, pageable);
+        }
+        return getParts(spec.getPartType(), pageable, spec);
+    }
 
     @SneakyThrows
     @Transactional

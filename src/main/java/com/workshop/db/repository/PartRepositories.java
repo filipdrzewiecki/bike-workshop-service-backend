@@ -89,10 +89,13 @@ public class PartRepositories {
     );
 
     private static final String WHERE = " where " +
+            "is_official=:isOfficial and " +
             "(:brand is null or brand = :brand) and " +
             "(:series is null or series = :series) and " +
             "(:year is null or year = :year) and " +
-            "(:model is null or model = :model) ";
+            "(:model is null or model = :model) and " +
+            "(:userId is null or user_id = :userId) ";
+
 
     private String formQuery() {
         return formBaseQuery() + " limit :offset, :size ;";
@@ -136,10 +139,12 @@ public class PartRepositories {
         if (spec == null) {
             return params;
         }
+        params.put("isOfficial", spec.isOfficial());
         params.put("brand", spec.getBrand());
         params.put("model", spec.getModel());
         params.put("series", spec.getSeries());
         params.put("year", spec.getYear());
+        params.put("userId", spec.getUserId());
         return params;
     }
 

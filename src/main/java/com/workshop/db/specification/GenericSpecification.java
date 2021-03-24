@@ -24,5 +24,7 @@ public class GenericSpecification {
     private String product;
     private String material;
     private String speeds;
+    private Long userId;
+    private boolean isOfficial;
 
 }

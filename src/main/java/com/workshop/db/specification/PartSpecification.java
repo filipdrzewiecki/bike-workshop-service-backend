@@ -6,13 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import net.minidev.json.annotate.JsonIgnore;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Accessors(chain = true)
-public class GenericSpecification {
+public class PartSpecification {
 
     private PartType partType;
     private String brand;
@@ -24,7 +25,9 @@ public class GenericSpecification {
     private String product;
     private String material;
     private String speeds;
+    @JsonIgnore
     private Long userId;
+    @JsonIgnore
     private boolean isOfficial;
 
 }

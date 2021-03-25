@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.workshop.db.entity.BicyclePart;
 import com.workshop.db.repository.BicyclePartRepository;
 
-import com.workshop.db.specification.GenericSpecification;
+import com.workshop.db.specification.PartSpecification;
 import com.workshop.enums.PartSpec;
 
 import javax.persistence.EntityNotFoundException;
@@ -33,7 +33,7 @@ public class OfficialPartService {
 
     @SneakyThrows
     @Transactional
-    public Object getOfficialParts(GenericSpecification spec, Pageable pageable) {
+    public Object getOfficialParts(PartSpecification spec, Pageable pageable) {
         if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
             return repositories.findAllParts(spec, pageable);
         }
@@ -64,7 +64,7 @@ public class OfficialPartService {
     }
 
     @SneakyThrows
-    public Object getParts(PartType type, Pageable pageable, GenericSpecification genericSpec) {
+    public Object getParts(PartType type, Pageable pageable, PartSpecification genericSpec) {
         Specification specification = Specifications.buildSpecification(genericSpec);
 
         Object[] parameters = {specification, pageable};

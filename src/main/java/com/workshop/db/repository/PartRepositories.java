@@ -1,7 +1,7 @@
 package com.workshop.db.repository;
 
 import com.workshop.db.entity.BicyclePart;
-import com.workshop.db.specification.GenericSpecification;
+import com.workshop.db.specification.PartSpecification;
 import com.workshop.enums.PartType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -114,7 +114,7 @@ public class PartRepositories {
         return String.format("select count(*) from ( %s ) parts;", formBaseQuery());
     }
 
-    public Page<BicyclePart> findAllParts(GenericSpecification spec, Pageable pageable) {
+    public Page<BicyclePart> findAllParts(PartSpecification spec, Pageable pageable) {
 
         Map<String, Object> params = assembleParams(spec, pageable);
 
@@ -127,14 +127,14 @@ public class PartRepositories {
         return new PageImpl<>(parts, pageable, total);
     }
 
-    private Map<String, Object> assembleParams(GenericSpecification spec, Pageable pageable) {
+    private Map<String, Object> assembleParams(PartSpecification spec, Pageable pageable) {
         Map<String, Object> params = assembleParams(spec);
         params.put("offset", pageable.getOffset());
         params.put("size", pageable.getPageSize());
         return params;
     }
 
-    private Map<String, Object> assembleParams(GenericSpecification spec) {
+    private Map<String, Object> assembleParams(PartSpecification spec) {
         Map<String, Object> params = new HashMap<>();
         if (spec == null) {
             return params;

@@ -12,7 +12,7 @@ import java.util.List;
 @UtilityClass
 public class Specifications {
 
-    public static Specification buildCommonSpecification(GenericSpecification spec) {
+    public static Specification buildCommonSpecification(PartSpecification spec) {
         return (Specification) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class Specifications {
         };
     }
 
-    public static Specification buildSpecification(GenericSpecification spec) {
+    public static Specification buildSpecification(PartSpecification spec) {
         return (Specification) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 

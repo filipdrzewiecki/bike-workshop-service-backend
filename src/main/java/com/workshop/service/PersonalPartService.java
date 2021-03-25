@@ -5,7 +5,7 @@ import com.workshop.db.entity.Bicycle;
 import com.workshop.db.entity.Frame;
 import com.workshop.db.repository.FrameRepository;
 import com.workshop.db.repository.PartRepositories;
-import com.workshop.db.specification.GenericSpecification;
+import com.workshop.db.specification.PartSpecification;
 import com.workshop.db.specification.Specifications;
 import com.workshop.enums.PartType;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class PersonalPartService {
 
     @SneakyThrows
     @Transactional
-    public Object getUserParts(GenericSpecification spec, Pageable pageable, String userName) {
+    public Object getUserParts(PartSpecification spec, Pageable pageable, String userName) {
         if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
             long userId = userService.getUserByUserName(userName).getId();
             spec.setUserId(userId);
@@ -42,7 +42,7 @@ public class PersonalPartService {
     }
 
     @SneakyThrows
-    public Object getParts(PartType type, Pageable pageable, GenericSpecification genericSpec) {
+    public Object getParts(PartType type, Pageable pageable, PartSpecification genericSpec) {
         Specification specification = Specifications.buildSpecification(genericSpec);
 
         Object[] parameters = {specification, pageable};

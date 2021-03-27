@@ -6,7 +6,6 @@ import org.springframework.util.StringUtils;
 import com.workshop.db.entity.BicyclePart;
 import com.workshop.db.entity.Frame;
 import com.workshop.db.entity.Fork;
-import com.workshop.enums.PartSpec;
 
 import java.util.Map;
 
@@ -15,10 +14,6 @@ public class PartNamingUtils {
 
     private static final String DASH = "-";
 
-    public static final Map<Object, PartSpec> PART_SPECIALIZATIONS = Map.ofEntries(
-            Map.entry(PartType.FRAME, new PartSpec<>(PartType.FRAME, "frame", "FRM", Frame.class)),
-            Map.entry(PartType.FORK, new PartSpec<>(PartType.FORK, "fork", "FRK", Fork.class))
-    );
 
     public static String createProductId(BicyclePart part) {
         if (part instanceof Frame) {
@@ -30,7 +25,7 @@ public class PartNamingUtils {
 
     private static String createGenericProductId(BicyclePart part) {
         PartType type = PartType.valueOfName(part.getProduct());
-        String prefix = PART_SPECIALIZATIONS.get(type).getPrefix();
+        String prefix = "XXX";
 
         StringBuilder builder = new StringBuilder();
 
@@ -51,10 +46,9 @@ public class PartNamingUtils {
 
 
     public static String createProductId(PartType type, String brand, String model, String series, String wheelSize, String other1, String other2) {
-        String prefix = PART_SPECIALIZATIONS.get(type).getPrefix();
         StringBuilder builder = new StringBuilder();
 
-        builder.append(prefix);
+        builder.append("XXX");
 
         builder.append(trimToProperLength(brand, 5));
 

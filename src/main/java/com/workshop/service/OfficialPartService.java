@@ -1,6 +1,8 @@
 package com.workshop.service;
 
 import com.workshop.db.repository.PartRepositories;
+import com.workshop.db.repository.PartRepository;
+import com.workshop.db.specification.PartSpec;
 import com.workshop.db.specification.Specifications;
 import com.workshop.enums.PartType;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +15,11 @@ import com.workshop.db.entity.BicyclePart;
 import com.workshop.db.repository.BicyclePartRepository;
 
 import com.workshop.db.specification.PartSpecification;
-import com.workshop.enums.PartSpec;
 
 import javax.persistence.EntityNotFoundException;
 import java.lang.reflect.Method;
 
-import static com.workshop.utils.PartNamingUtils.PART_SPECIALIZATIONS;
+import static com.workshop.db.specification.PartSpecifications.PART_SPEC_MAP;
 import static com.workshop.utils.PartNamingUtils.createProductId;
 import static com.workshop.utils.SerializationUtils.deserializeEntity;
 
@@ -30,21 +31,23 @@ public class OfficialPartService {
 
     private final BicyclePartRepository partRepository;
     private final PartRepositories repositories;
+    private final PartRepository nativePartRepository;
 
     @SneakyThrows
     @Transactional
     public Object getOfficialParts(PartSpecification spec, Pageable pageable) {
         if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
-            return repositories.findAllParts(spec, pageable);
+            return nativePartRepository.findAllParts(spec, pageable);
         }
-        return getParts(spec.getPartType(), pageable, spec);
+        PartSpec partSpec = PART_SPEC_MAP.get(spec.getPartType());
+        return nativePartRepository.findAllPartsOfType(partSpec, pageable, spec);
     }
 
     @SneakyThrows
     @Transactional
     public BicyclePart addPart(PartType type, String partJson) {
 
-        PartSpec spec = PART_SPECIALIZATIONS.get(type);
+        PartSpec spec = PART_SPEC_MAP.get(type);
 
         Class<?> clazz = spec.getClazz();
         BicyclePart part = (BicyclePart) deserializeEntity(partJson, clazz);

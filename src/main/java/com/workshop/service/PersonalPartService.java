@@ -5,6 +5,7 @@ import com.workshop.db.entity.Bicycle;
 import com.workshop.db.entity.Frame;
 import com.workshop.db.repository.FrameRepository;
 import com.workshop.db.repository.PartRepositories;
+import com.workshop.db.repository.PartRepository;
 import com.workshop.db.specification.PartSpecification;
 import com.workshop.db.specification.Specifications;
 import com.workshop.enums.PartType;
@@ -29,6 +30,7 @@ public class PersonalPartService {
     private final FrameRepository frameRepository;
     private final PartRepositories repositories;
     private final UserService userService;
+    private final PartRepository nativePartRepository;
 
     @SneakyThrows
     @Transactional
@@ -36,7 +38,7 @@ public class PersonalPartService {
         if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
             long userId = userService.getUserByUserName(userName).getId();
             spec.setUserId(userId);
-            return repositories.findAllParts(spec, pageable);
+            return nativePartRepository.findAllParts(spec, pageable);
         }
         return getParts(spec.getPartType(), pageable, spec);
     }

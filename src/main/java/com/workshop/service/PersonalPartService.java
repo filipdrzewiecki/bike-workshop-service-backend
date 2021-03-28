@@ -38,7 +38,7 @@ public class PersonalPartService {
         if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
             long userId = userService.getUserByUserName(userName).getId();
             spec.setUserId(userId);
-            return nativePartRepository.findAllParts(spec, pageable);
+            return nativePartRepository.findAll(spec, pageable);
         }
         return getParts(spec.getPartType(), pageable, spec);
     }

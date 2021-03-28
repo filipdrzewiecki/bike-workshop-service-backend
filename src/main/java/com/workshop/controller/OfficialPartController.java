@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.workshop.component.BicycleTypePropertyEditor;
 import com.workshop.db.entity.BicyclePart;
-import com.workshop.db.specification.PartSpecification;
+import com.workshop.db.specification.PartQuerySpecification;
 import com.workshop.service.OfficialPartService;
 
 
@@ -35,7 +35,7 @@ public class OfficialPartController {
     }
 
     @GetMapping
-    public Object getOfficialParts(@PageableDefault(size = 20) Pageable pageable, PartSpecification spec) {
+    public Object getOfficialParts(@PageableDefault(size = 20) Pageable pageable, PartQuerySpecification spec) {
         spec.setOfficial(true);
         return service.getOfficialParts(spec, pageable);
     }

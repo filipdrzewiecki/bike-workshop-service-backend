@@ -64,6 +64,7 @@ public class PartSpecifications {
     public static final PartSpec HANDLEBAR_SPEC = new PartSpec(PartType.HANDLEBAR, Handlebar.class, "handlebar", PartPrefix.HBR);
     public static final PartSpec HEADSET_SPEC = new PartSpec(PartType.HEADSET, HeadSet.class, "head_set", PartPrefix.HST);
     public static final PartSpec STEM_SPEC = new PartSpec(PartType.STEM, Stem.class, "stem", PartPrefix.STM);
+    public static final PartSpec BICYCLE_PART_SPEC = new PartSpec(PartType.BICYCLE_PART, BicyclePart.class, "bicycle_part", null);
 
     public static final Map<PartType, PartSpec> PART_SPEC_MAP = Map.ofEntries(
             Map.entry(FRAME_SPEC.getPartType(), FRAME_SPEC),
@@ -92,6 +93,7 @@ public class PartSpecifications {
             Map.entry(GRIPS_SPEC.getPartType(), GRIPS_SPEC),
             Map.entry(HANDLEBAR_SPEC.getPartType(), HANDLEBAR_SPEC),
             Map.entry(HEADSET_SPEC.getPartType(), HEADSET_SPEC),
-            Map.entry(STEM_SPEC.getPartType(), STEM_SPEC)
+            Map.entry(STEM_SPEC.getPartType(), STEM_SPEC),
+            Map.entry(BICYCLE_PART_SPEC.getPartType(), BICYCLE_PART_SPEC)
     );
 }

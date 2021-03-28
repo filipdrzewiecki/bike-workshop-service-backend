@@ -6,14 +6,8 @@ import lombok.Value;
 
 @Value
 public class PartSpec {
-
     PartType partType;
     Class clazz;
     String table;
     PartPrefix prefix;
-
-
-
-
-
 }

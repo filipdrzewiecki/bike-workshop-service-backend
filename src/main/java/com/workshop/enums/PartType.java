@@ -34,7 +34,7 @@ public enum PartType {
     HANDLEBAR("handlebar"),
     HEADSET("headset"),
     STEM("stem"),
-    COMMON("common");
+    BICYCLE_PART("common");
 
     public final String commonName;
 

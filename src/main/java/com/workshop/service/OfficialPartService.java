@@ -1,18 +1,18 @@
 package com.workshop.service;
 
-import com.workshop.db.repository.PartRepositories;
-import com.workshop.db.repository.PartRepository;
+import com.workshop.db.repository.PartSearchRepository;
 import com.workshop.db.specification.PartSpec;
 import com.workshop.enums.PartType;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.workshop.db.entity.BicyclePart;
 import com.workshop.db.repository.BicyclePartRepository;
 
-import com.workshop.db.specification.PartSpecification;
+import com.workshop.db.specification.PartQuerySpecification;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -26,18 +26,14 @@ import static com.workshop.utils.SerializationUtils.deserializeEntity;
 @RequiredArgsConstructor
 public class OfficialPartService {
 
-    private final BicyclePartRepository partRepository;
-    private final PartRepositories repositories;
-    private final PartRepository nativePartRepository;
+    private final BicyclePartRepository bicyclePartRepository;
+    private final PartSearchRepository partSearchRepository;
 
     @SneakyThrows
     @Transactional
-    public Object getOfficialParts(PartSpecification spec, Pageable pageable) {
-        if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
-            return nativePartRepository.findAll(spec, pageable);
-        }
-        PartSpec partSpec = PART_SPEC_MAP.get(spec.getPartType());
-        return nativePartRepository.findAllOfType(partSpec, pageable, spec);
+    public <T> Page<T> getOfficialParts(PartQuerySpecification querySpec, Pageable pageable) {
+        PartSpec partSpec = PART_SPEC_MAP.get(querySpec.getPartType());
+        return partSearchRepository.findAll(partSpec, querySpec, pageable);
     }
 
     @SneakyThrows
@@ -55,11 +51,11 @@ public class OfficialPartService {
         part.setProduct(type.getCommonName());
         part.setIsOfficial(true);
 
-        return partRepository.save(part);
+        return bicyclePartRepository.save(part);
     }
 
     public Object getPart(PartType type, String id) {
-        return partRepository.findByProductId(id)
+        return bicyclePartRepository.findByProductId(id)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Couldn't find part of type %s and if %s", type.getCommonName(), id)));
     }
 }

@@ -1,7 +1,7 @@
 package com.workshop.controller;
 
 import com.workshop.component.BicycleTypePropertyEditor;
-import com.workshop.db.specification.PartSpecification;
+import com.workshop.db.specification.PartQuerySpecification;
 import com.workshop.enums.PartType;
 import com.workshop.service.PersonalPartService;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class PersonalPartController {
     @GetMapping("/parts")
     public Object getUserParts(@PathVariable String userName,
                                @PageableDefault(size = 20) Pageable pageable,
-                               PartSpecification spec) {
+                               PartQuerySpecification spec) {
         spec.setOfficial(false);
         return personalPartService.getUserParts(spec, pageable, userName);
     }

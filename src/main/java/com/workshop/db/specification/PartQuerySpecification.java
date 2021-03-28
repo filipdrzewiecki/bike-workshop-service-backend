@@ -13,9 +13,9 @@ import net.minidev.json.annotate.JsonIgnore;
 @NoArgsConstructor
 @Builder
 @Accessors(chain = true)
-public class PartSpecification {
+public class PartQuerySpecification {
 
-    private PartType partType;
+    private PartType partType = PartType.BICYCLE_PART;
     private String brand;
     private String model;
     private String series;

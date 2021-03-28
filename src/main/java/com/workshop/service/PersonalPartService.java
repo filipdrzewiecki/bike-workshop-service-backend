@@ -5,8 +5,9 @@ import com.workshop.db.entity.Bicycle;
 import com.workshop.db.entity.Frame;
 import com.workshop.db.repository.FrameRepository;
 import com.workshop.db.repository.PartRepositories;
-import com.workshop.db.repository.PartRepository;
-import com.workshop.db.specification.PartSpecification;
+import com.workshop.db.repository.PartSearchRepository;
+import com.workshop.db.specification.PartSpec;
+import com.workshop.db.specification.PartQuerySpecification;
 import com.workshop.db.specification.Specifications;
 import com.workshop.enums.PartType;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,11 @@ import javax.persistence.EntityNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-/** Manages parts added by the user */
+import static com.workshop.db.specification.PartSpecifications.PART_SPEC_MAP;
+
+/**
+ * Manages parts added by the user
+ */
 
 @Service
 @RequiredArgsConstructor
@@ -30,21 +35,19 @@ public class PersonalPartService {
     private final FrameRepository frameRepository;
     private final PartRepositories repositories;
     private final UserService userService;
-    private final PartRepository nativePartRepository;
+    private final PartSearchRepository partSearchRepository;
 
     @SneakyThrows
     @Transactional
-    public Object getUserParts(PartSpecification spec, Pageable pageable, String userName) {
-        if (spec.getPartType() == null || spec.getPartType() == PartType.COMMON) {
-            long userId = userService.getUserByUserName(userName).getId();
-            spec.setUserId(userId);
-            return nativePartRepository.findAll(spec, pageable);
-        }
-        return getParts(spec.getPartType(), pageable, spec);
+    public Object getUserParts(PartQuerySpecification querySpec, Pageable pageable, String userName) {
+        PartSpec partSpec = PART_SPEC_MAP.get(querySpec.getPartType());
+        long userId = userService.getUserByUserName(userName).getId();
+        querySpec.setUserId(userId);
+        return partSearchRepository.findAll(partSpec, querySpec, pageable);
     }
 
     @SneakyThrows
-    public Object getParts(PartType type, Pageable pageable, PartSpecification genericSpec) {
+    public Object getParts(PartType type, Pageable pageable, PartQuerySpecification genericSpec) {
         Specification specification = Specifications.buildSpecification(genericSpec);
 
         Object[] parameters = {specification, pageable};

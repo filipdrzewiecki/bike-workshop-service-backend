@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class RegisterForm {
 
     @NotBlank
-    private String userName;
+    private String username;
 
     @NotBlank
     private String email;

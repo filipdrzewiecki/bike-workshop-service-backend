@@ -2,7 +2,7 @@ package com.workshop.db.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.workshop.config.security.entity.User;
+import com.workshop.config.security.entity.ServiceUser;
 import com.workshop.db.entity.Bicycle;
 
 import java.util.List;
@@ -11,10 +11,10 @@ import java.util.Optional;
 @Repository
 public interface BicycleRepository extends JpaRepository<Bicycle, Long> {
 
-    List<Bicycle> findAllByUser(User user);
+    List<Bicycle> findAllByServiceUser(ServiceUser serviceUser);
 
-    Optional<Bicycle> findByNameAndUser (String name, User user);
+    Optional<Bicycle> findByNameAndServiceUser(String name, ServiceUser serviceUser);
 
-    boolean existsByNameAndUser(String name, User user);
+    boolean existsByNameAndServiceUser(String name, ServiceUser serviceUser);
 
 }

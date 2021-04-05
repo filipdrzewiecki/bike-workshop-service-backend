@@ -14,7 +14,7 @@ public class Seatpost extends BicyclePart {
     private Double diameter;
     private String material;
     private Boolean suspension;
-    private Integer offset;
+    private Integer seatpostOffset;
 
     //dropper seatPost section
     private Integer travel;

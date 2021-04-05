@@ -25,7 +25,7 @@ public class Fork extends BicyclePart {
     private String brakeType;
     private String discMount;
 
-    private String offset;
+    private String forkOffset;
 
     //suspensionFork
     private Double travel;

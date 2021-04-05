@@ -1,5 +1,5 @@
 package com.workshop.db.entity;
-import com.workshop.config.security.entity.User;
+import com.workshop.config.security.entity.ServiceUser;
 import com.workshop.enums.BicycleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,5 +49,5 @@ public class Bicycle {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private ServiceUser serviceUser;
 }

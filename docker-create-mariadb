@@ -1,2 +1,0 @@
-docker run -dit --name bikeWorkshopDb -e MYSQL_ROOT_PASSWORD=rootPassword -e MYSQL_DATABASE=bikeWorkshopDb -e MYSQL_USER=dev -e MYSQL_PASSWORD=dev -p 3306:3306 mariadb:10 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-docker start bikeWorkshopDb

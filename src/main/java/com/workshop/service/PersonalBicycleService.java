@@ -3,11 +3,11 @@ package com.workshop.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.workshop.config.security.entity.ServiceUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import com.workshop.config.security.entity.User;
 import com.workshop.db.dto.BicycleDto;
 import com.workshop.db.entity.Bicycle;
 
@@ -26,24 +26,24 @@ public class PersonalBicycleService {
     private final BicycleRepository repository;
 
     public List<BicycleDto> getAllBicycles(String userName) {
-        User user = userService.getUserByUserName(userName);
-        List<Bicycle> bicycles = repository.findAllByUser(user);
+        ServiceUser serviceUser = userService.getUserByUserName(userName);
+        List<Bicycle> bicycles = repository.findAllByServiceUser(serviceUser);
         return mapToDto(bicycles);
     }
 
     public Bicycle getBicycle(String userName, String bicycleName) {
-        User user = userService.getUserByUserName(userName);
+        ServiceUser serviceUser = userService.getUserByUserName(userName);
 
-        return repository.findByNameAndUser(StringUtils.trimAllWhitespace(bicycleName), user)
+        return repository.findByNameAndServiceUser(StringUtils.trimAllWhitespace(bicycleName), serviceUser)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Couldn't find the bicycle of name %s", bicycleName)));
     }
 
     public Bicycle addBicycle(String userName, Bicycle bicycle) {
-        User user = userService.getUserByUserName(userName);
-        if (repository.existsByNameAndUser(bicycle.getName(), user)) {
+        ServiceUser serviceUser = userService.getUserByUserName(userName);
+        if (repository.existsByNameAndServiceUser(bicycle.getName(), serviceUser)) {
             throw new IllegalArgumentException("User has already bicycle with that name");
         }
-        bicycle.setUser(user);
+        bicycle.setServiceUser(serviceUser);
         return repository.save(bicycle);
     }
 

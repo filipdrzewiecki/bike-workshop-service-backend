@@ -36,11 +36,6 @@ public class PartQueryBuilder {
         return this;
     }
 
-    public PartQueryBuilder allOfType(String partName) {
-        this.query = String.format("select * from %s parts %s ", partName, WHERE);
-        return this;
-    }
-
     public PartQueryBuilder paged() {
         this.query = this.query + LIMIT;
         return this;

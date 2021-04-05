@@ -29,8 +29,8 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
-public class User {
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "username"))
+public class ServiceUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class User {
 
     @NotBlank
     @Column(unique=true)
-    private String userName;
+    private String username;
 
     @NotBlank
     @ToString.Exclude
@@ -50,8 +50,8 @@ public class User {
     private String email;
 
     @ManyToMany
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "service_user_role",
+            joinColumns = @JoinColumn(name = "service_user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;

@@ -1,12 +1,11 @@
 package com.workshop.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.workshop.config.security.entity.User;
+import com.workshop.config.security.entity.ServiceUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Column;
@@ -54,5 +53,5 @@ public class BicyclePart {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private ServiceUser serviceUser;
 }

@@ -1,6 +1,6 @@
 package com.workshop.config.security.component;
 
-import com.workshop.config.security.entity.ServiceUser;
+import com.workshop.config.security.entity.Profile;
 import com.workshop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,20 +49,20 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
         final String token = authentication.getCredentials().toString();
         log.info("Received token with username {}", userName);
 
-        final ServiceUser serviceUser = userService.getUserByUserName(userName);
+        final Profile profile = userService.getUserByUserName(userName);
 
         log.info("Token for username {} was valid", userName);
 
-        return authenticationBuilder.buildAuthentication(serviceUser, token);
+        return authenticationBuilder.buildAuthentication(profile, token);
     }
 
     private UserAuthentication authenticateByLoginAndPassword(UsernamePasswordAuthenticationToken authentication) {
-        final ServiceUser serviceUser = userService.findByUserNameAndPlainTextPassword(authentication.getName(), authentication.getCredentials().toString())
+        final Profile profile = userService.findByUserNameAndPlainTextPassword(authentication.getName(), authentication.getCredentials().toString())
                 .orElseThrow(() -> new BadCredentialsException(BAD_CREDENTIALS_MESSAGE));
 
-        final String token = jwtTokenBuilder.createToken(serviceUser);
+        final String token = jwtTokenBuilder.createToken(profile);
 
-        return authenticationBuilder.buildAuthentication(serviceUser, token);
+        return authenticationBuilder.buildAuthentication(profile, token);
     }
 
     @Override

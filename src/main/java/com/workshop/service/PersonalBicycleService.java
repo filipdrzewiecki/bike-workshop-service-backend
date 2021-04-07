@@ -3,7 +3,7 @@ package com.workshop.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.workshop.config.security.entity.ServiceUser;
+import com.workshop.config.security.entity.Profile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,24 +26,24 @@ public class PersonalBicycleService {
     private final BicycleRepository repository;
 
     public List<BicycleDto> getAllBicycles(String userName) {
-        ServiceUser serviceUser = userService.getUserByUserName(userName);
-        List<Bicycle> bicycles = repository.findAllByServiceUser(serviceUser);
+        Profile profile = userService.getUserByUserName(userName);
+        List<Bicycle> bicycles = repository.findAllByProfile(profile);
         return mapToDto(bicycles);
     }
 
     public Bicycle getBicycle(String userName, String bicycleName) {
-        ServiceUser serviceUser = userService.getUserByUserName(userName);
+        Profile profile = userService.getUserByUserName(userName);
 
-        return repository.findByNameAndServiceUser(StringUtils.trimAllWhitespace(bicycleName), serviceUser)
+        return repository.findByNameAndProfile(StringUtils.trimAllWhitespace(bicycleName), profile)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Couldn't find the bicycle of name %s", bicycleName)));
     }
 
     public Bicycle addBicycle(String userName, Bicycle bicycle) {
-        ServiceUser serviceUser = userService.getUserByUserName(userName);
-        if (repository.existsByNameAndServiceUser(bicycle.getName(), serviceUser)) {
+        Profile profile = userService.getUserByUserName(userName);
+        if (repository.existsByNameAndProfile(bicycle.getName(), profile)) {
             throw new IllegalArgumentException("User has already bicycle with that name");
         }
-        bicycle.setServiceUser(serviceUser);
+        bicycle.setProfile(profile);
         return repository.save(bicycle);
     }
 

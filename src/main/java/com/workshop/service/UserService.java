@@ -1,8 +1,8 @@
 package com.workshop.service;
 
 import com.workshop.config.security.dto.RegisterForm;
+import com.workshop.config.security.entity.Profile;
 import com.workshop.config.security.entity.Role;
-import com.workshop.config.security.entity.ServiceUser;
 import com.workshop.config.security.enums.Roles;
 import com.workshop.config.security.repository.RoleRepository;
 import com.workshop.config.security.repository.UserRepository;
@@ -24,7 +24,7 @@ public class UserService {
     private final RoleRepository roleRepository;
     private final MessagesService messages;
 
-    public Optional<ServiceUser> findByUserNameAndPlainTextPassword(String userName, String plainTextPassword) {
+    public Optional<Profile> findByUserNameAndPlainTextPassword(String userName, String plainTextPassword) {
 
         final PasswordEncoder passwordEncoder = applicationContext.getBean(PasswordEncoder.class);
 
@@ -32,31 +32,31 @@ public class UserService {
                 .filter(user -> passwordEncoder.matches(plainTextPassword, user.getPassword()));
     }
 
-    public ServiceUser getUserByUserName(String userName) {
+    public Profile getUserByUserName(String userName) {
         return userRepository.findByUser(userName)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User %s not found", userName)));
     }
 
-    public ServiceUser createNewUser(RegisterForm registerForm) {
+    public Profile createNewUser(RegisterForm registerForm) {
         if (userRepository.existsByUsername(registerForm.getUsername())) {
             throw new IllegalArgumentException(messages.getMessage("user.exists.error"));
         }
         if (!registerForm.getPassword().equals(registerForm.getRepeatedPassword())) {
             throw new IllegalArgumentException(messages.getMessage("user.passwordRepeat.error"));
         }
-        ServiceUser newServiceUser = assembleNewUserData(registerForm);
-        return userRepository.save(newServiceUser);
+        Profile newProfile = assembleNewUserData(registerForm);
+        return userRepository.save(newProfile);
 
     }
 
-    private ServiceUser assembleNewUserData(RegisterForm registerForm) {
+    private Profile assembleNewUserData(RegisterForm registerForm) {
         final PasswordEncoder passwordEncoder = applicationContext.getBean(PasswordEncoder.class);
         String encryptedPassword = passwordEncoder.encode(registerForm.getPassword());
 
         Role userRole = roleRepository.findByRoleName(Roles.CUSTOMER.toString())
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Role %s not found", Roles.CUSTOMER)));
 
-        return ServiceUser.builder()
+        return Profile.builder()
                 .username(registerForm.getUsername())
                 .email(registerForm.getEmail())
                 .roles(Set.of(userRole))

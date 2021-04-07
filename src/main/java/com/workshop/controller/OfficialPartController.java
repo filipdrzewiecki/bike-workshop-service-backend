@@ -40,6 +40,12 @@ public class OfficialPartController {
         return service.getOfficialParts(spec, pageable);
     }
 
+    @GetMapping("/v2")
+    public Object getOfficialParts2(@PageableDefault(size = 20) Pageable pageable, PartQuerySpecification spec) {
+        spec.setOfficial(true);
+        return service.getOfficialParts2(spec, pageable);
+    }
+
     @GetMapping("/{partType}/{partId}")
     public Object fetchPart(@PathVariable PartType partType, @PathVariable String partId) {
         return service.getPart(partType, partId);

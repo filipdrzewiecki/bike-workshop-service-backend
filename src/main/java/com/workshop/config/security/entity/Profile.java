@@ -30,7 +30,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "username"))
-public class ServiceUser {
+public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,8 +50,8 @@ public class ServiceUser {
     private String email;
 
     @ManyToMany
-    @JoinTable(name = "service_user_role",
-            joinColumns = @JoinColumn(name = "service_user_id"),
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "profile_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;

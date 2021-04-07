@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//Experiments
 @NoArgsConstructor
 public class PartQueryBuilder {
 
@@ -13,13 +12,13 @@ public class PartQueryBuilder {
 
     private static final String WHERE = " where " +
             "is_official=:isOfficial and " +
-            "(:brand is null or brand = :brand) and " +
-            "(:series is null or series = :series) and " +
-            "(:year is null or year = :year) and " +
-            "(:model is null or model = :model) and " +
-            "(:userId is null or user_id = :userId) ";
+            "(:brand::text is null or brand = :brand) and " +
+            "(:series::text is null or series = :series) and " +
+            "(:year::text is null or year = :year) and " +
+            "(:model::text is null or model = :model) and " +
+            "(:userId::text is null or user_id = :userId) ";
 
-    private static final String LIMIT = " limit :offset, :size ";
+    private static final String LIMIT = " offset :offset limit :size ";
 
     private String query;
 

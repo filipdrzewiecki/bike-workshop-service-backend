@@ -1,6 +1,6 @@
 package com.workshop.config.security.component;
 
-import com.workshop.config.security.entity.ServiceUser;
+import com.workshop.config.security.entity.Profile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import org.springframework.security.core.Authentication;
@@ -15,7 +15,7 @@ public class UserAuthentication implements Authentication {
     private boolean isAuthenticated;
     private Collection<? extends GrantedAuthority> authorities;
     private String userName;
-    private ServiceUser serviceUser;
+    private Profile profile;
     private String userIP;
 
     @Override
@@ -32,7 +32,7 @@ public class UserAuthentication implements Authentication {
     @Override
     @JsonIgnore
     public Object getDetails() {
-        return serviceUser;
+        return profile;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.workshop.controller;
 
 import com.workshop.config.security.dto.RegisterForm;
-import com.workshop.config.security.entity.ServiceUser;
+import com.workshop.config.security.entity.Profile;
 import com.workshop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -20,12 +20,12 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ServiceUser getAuthentication(@RequestBody @Validated RegisterForm registerForm) {
+    public Profile getAuthentication(@RequestBody @Validated RegisterForm registerForm) {
         return userService.createNewUser(registerForm);
     }
 
     @GetMapping("/{userName}")
-    public ServiceUser getAuthentication(@PathVariable String userName) {
+    public Profile getAuthentication(@PathVariable String userName) {
         return userService.getUserByUserName(userName);
     }
 }

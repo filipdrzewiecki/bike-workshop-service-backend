@@ -1,5 +1,7 @@
 package com.workshop.service;
 
+import com.workshop.db.entity.PartView;
+import com.workshop.db.repository.BasicPartRepository;
 import com.workshop.db.repository.PartSearchRepository;
 import com.workshop.db.specification.PartSpec;
 import com.workshop.enums.PartType;
@@ -28,6 +30,13 @@ public class OfficialPartService {
 
     private final BicyclePartRepository bicyclePartRepository;
     private final PartSearchRepository partSearchRepository;
+    private final BasicPartRepository basicPartRepository;
+
+    @Transactional
+    public Page<PartView> getOfficialParts2(PartQuerySpecification querySpec, Pageable pageable) {
+//        PartSpec partSpec = PART_SPEC_MAP.get(querySpec.getPartType());
+        return basicPartRepository.findAll(pageable);
+    }
 
     @SneakyThrows
     @Transactional

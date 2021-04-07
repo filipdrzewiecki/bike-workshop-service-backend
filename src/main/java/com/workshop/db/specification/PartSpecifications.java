@@ -16,7 +16,7 @@ import com.workshop.db.entity.Frame;
 import com.workshop.db.entity.FrontDerailleur;
 import com.workshop.db.entity.Grips;
 import com.workshop.db.entity.Handlebar;
-import com.workshop.db.entity.HeadSet;
+import com.workshop.db.entity.Headset;
 import com.workshop.db.entity.Hub;
 import com.workshop.db.entity.Pedals;
 import com.workshop.db.entity.RearDerailleur;
@@ -62,7 +62,7 @@ public class PartSpecifications {
     public static final PartSpec SHIFTER_SPEC = new PartSpec(PartType.SHIFTER, Shifter.class, "shifter", PartPrefix.SHF);
     public static final PartSpec GRIPS_SPEC = new PartSpec(PartType.GRIPS, Grips.class, "grips", PartPrefix.GRP);
     public static final PartSpec HANDLEBAR_SPEC = new PartSpec(PartType.HANDLEBAR, Handlebar.class, "handlebar", PartPrefix.HBR);
-    public static final PartSpec HEADSET_SPEC = new PartSpec(PartType.HEADSET, HeadSet.class, "head_set", PartPrefix.HST);
+    public static final PartSpec HEADSET_SPEC = new PartSpec(PartType.HEADSET, Headset.class, "headset", PartPrefix.HST);
     public static final PartSpec STEM_SPEC = new PartSpec(PartType.STEM, Stem.class, "stem", PartPrefix.STM);
     public static final PartSpec BICYCLE_PART_SPEC = new PartSpec(PartType.BICYCLE_PART, BicyclePart.class, "bicycle_part", null);
 

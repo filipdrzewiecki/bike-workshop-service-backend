@@ -1,7 +1,7 @@
 package com.workshop.config.security.component;
 
+import com.workshop.config.security.entity.Profile;
 import com.workshop.config.security.entity.Role;
-import com.workshop.config.security.entity.ServiceUser;
 import com.workshop.config.security.enums.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,8 +18,8 @@ public class AuthenticationBuilder {
 
     private final HttpRequestComponent httpRequestComponent;
 
-    public UserAuthentication buildAuthentication(ServiceUser serviceUser, String token) {
-        final List<Role> roles = serviceUser.getRoles().stream()
+    public UserAuthentication buildAuthentication(Profile profile, String token) {
+        final List<Role> roles = profile.getRoles().stream()
                 .filter(role -> Roles.contains(role.getRoleName()))
                 .collect(Collectors.toList());
 
@@ -33,10 +33,10 @@ public class AuthenticationBuilder {
                 .authorities(authorities)
                 .token(token)
                 .userIP(httpRequestComponent.getClientIpAddress())
-                .serviceUser(serviceUser)
+                .profile(profile)
                 .isAuthenticated(true)
-                .userId(serviceUser.getId())
-                .userName(serviceUser.getUsername())
+                .userId(profile.getId())
+                .userName(profile.getUsername())
                 .build();
     }
 }

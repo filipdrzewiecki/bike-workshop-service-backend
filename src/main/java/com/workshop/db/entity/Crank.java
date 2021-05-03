@@ -36,9 +36,16 @@ public class Crank extends BicyclePart {
     @ManyToOne(cascade = CascadeType.ALL)
     private Chainring bigGear;
 
+    private String bigGearModel;
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Chainring mediumGear;
 
+    private String mediumGearModel;
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Chainring smallGear;
+
+    private String smallGearModel;
+
 }

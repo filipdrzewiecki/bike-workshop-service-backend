@@ -8,8 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-public class Hub extends BicyclePart{
-
+public class Hub extends BicyclePart {
 
     private Integer holes;
     private String axleDiameter;
@@ -17,12 +16,13 @@ public class Hub extends BicyclePart{
     private String discType;
     private Double offsetLeft;
     private Double offsetRight;
+    private Double flangeDistance;
     private Double pcdLeft;
     private Double pcdRight;
     private String hubType;
 
+    private String side;
     private Integer speeds;
     private Double freewheelWidth;
-    private String freewheelType;
 
 }

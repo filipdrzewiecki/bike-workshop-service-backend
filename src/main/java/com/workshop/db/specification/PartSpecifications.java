@@ -10,7 +10,7 @@ import com.workshop.db.entity.Chain;
 import com.workshop.db.entity.Chainring;
 import com.workshop.db.entity.Crank;
 import com.workshop.db.entity.Damper;
-import com.workshop.db.entity.Disc;
+import com.workshop.db.entity.BrakeRotor;
 import com.workshop.db.entity.Fork;
 import com.workshop.db.entity.Frame;
 import com.workshop.db.entity.FrontDerailleur;
@@ -44,7 +44,7 @@ public class PartSpecifications {
     public static final PartSpec BRAKE_LEVER_SPEC = new PartSpec(PartType.BRAKE_LEVER, BrakeLever.class, "brake_lever", PartPrefix.BRL);
     public static final PartSpec FORK_SPEC = new PartSpec(PartType.FORK, Fork.class, "fork", PartPrefix.FRK);
     public static final PartSpec DAMPER_SPEC = new PartSpec(PartType.DAMPER, Damper.class, "damper", PartPrefix.DMP);
-    public static final PartSpec DISC_SPEC = new PartSpec(PartType.DISC, Disc.class, "disc", PartPrefix.DSC);
+    public static final PartSpec DISC_SPEC = new PartSpec(PartType.DISC, BrakeRotor.class, "disc", PartPrefix.DSC);
     public static final PartSpec HUB_SPEC = new PartSpec(PartType.HUB, Hub.class, "hub", PartPrefix.HUB);
     public static final PartSpec PEDALS_SPEC = new PartSpec(PartType.PEDALS, Pedals.class, "pedals", PartPrefix.PDL);
     public static final PartSpec RIM_SPEC = new PartSpec(PartType.RIM, Rim.class, "rim", PartPrefix.RIM);

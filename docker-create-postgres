@@ -1,3 +1,11 @@
 docker run -dit --name bikeWorkshopDb -e POSTGRES_DB=bikeWorkshopDb -e POSTGRES_USER=dev -e POSTGRES_PASSWORD=dev -p 5432:5432 postgres:13.2
+docker run -dit --name testDb -v C:/postgres-data:/var/lib/postgresql/data -e POSTGRES_DB=testDb -e POSTGRES_USER=dev -e POSTGRES_PASSWORD=dev -p 5444:5432 postgres:13.2
+docker run -dit --name test -e POSTGRES_DB=test -e POSTGRES_USER=dev -e POSTGRES_PASSWORD=dev -p 5444:5432 postgres:13.2
+
+docker exec bikeWorkshopDb /db/backup -u root --password=root bikeWorkshopDb > backup.sql
+docker exec CONTAINER /usr/bin/mysqldump -u root --password=root -r DATABASE | Set-Content backup.sql
+
+
+
 docker-compose -f docker-compose.yml up
 docker start bikeWorkshopDb

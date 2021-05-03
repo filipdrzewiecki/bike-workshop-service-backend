@@ -74,8 +74,8 @@ class DatabaseUtils extends IntegrationTest {
     @Test
     @Disabled
     void addFrames() throws Exception {
-        String json = resourceAsJson("db/frames.json");
-        List<Frame> frames = objectMapper.readValue(json, new TypeReference<List<Frame>>() {});
+        String json = resourceAsJson("db/parts.json");
+        List<BicyclePart> frames = objectMapper.readValue(json, new TypeReference<List<BicyclePart>>() {});
         bicyclePartRepository.saveAll(frames);
     }
 
